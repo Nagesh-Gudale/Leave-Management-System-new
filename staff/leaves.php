@@ -1,6 +1,7 @@
 <?php
-include '../include/db-connection.php';
 include '../include/session.php';
+include '../include/db-connection.php';
+
 
 
 
@@ -15,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       $sql = "INSERT INTO leaves (user_id, leave_type_id ,start_date ,end_date ,reason) VALUES ('$userId', '$leave_type_id' ,'$startDate' ,'$endDate','$reason')";
       if ($conn->query($sql) === TRUE) {
-          $_SESSION['message'] = 'New department created successfully';
+          $_SESSION['message'] = 'New leave created successfully';
       } else {
           $_SESSION['error'] = 'Error: ' . $conn->error;
       }
@@ -28,13 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 $sql = "SELECT l.*, lt.id , lt.type FROM leaves as l INNER JOIN leave_types as lt ON l.leave_type_id=lt.id WHERE l.user_id = $userId";
 $result = $conn->query($sql);
+$leaves = [];
 while($row = $result->fetch_assoc())
 {
     $leaves[] = $row;
 }
- 
+
 $sql2 = "SELECT * FROM leave_types";
 $result2 = $conn->query($sql2);
+$leaves_types = [];
 while($rows = $result2->fetch_assoc())
 {
     $leaves_types[] = $rows;
