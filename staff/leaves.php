@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 
-$sql = "SELECT l.*, lt.id , lt.type FROM leaves as l INNER JOIN leave_types as lt ON l.leave_type_id=lt.id WHERE l.user_id = $userId";
+$sql = "SELECT l.* , lt.type FROM leaves as l INNER JOIN leave_types as lt ON l.leave_type_id=lt.id WHERE l.user_id = $userId";
 $result = $conn->query($sql);
 $leaves = [];
 while($row = $result->fetch_assoc())
@@ -58,7 +58,7 @@ include '../templates/admin-header.php';
       <h1>Leave List</h1>
     </div><!-- End Page Title -->
     <button type="button" class="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#add">
-                                Add Leave
+                                Apply for Leave
                             </button>
     <section class="section">
       <div class="row">
@@ -67,7 +67,7 @@ include '../templates/admin-header.php';
           <div class="card">
             <div class="card-body">
               <!-- Table with stripped rows -->
-              <table class="table datatable">
+              <table class="table datatable" id="leave">
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -109,7 +109,7 @@ include '../templates/admin-header.php';
   <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title">Add Leave</h5>
+              <h5 class="modal-title">Apply for Leave</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <!-- Vertical Form -->
@@ -149,7 +149,21 @@ include '../templates/admin-header.php';
       </div>
   </div>
 </div>
-
+<script>
+    $(document).ready(function() {
+        $('#leave').DataTable({
+            "scrollX": false, // Enable horizontal scrolling
+            "columns": [
+              { "width": "10%" }, // Adjust width as needed for each column
+                { "width": "15%" },
+                { "width": "15%" },
+                { "width": "20%" },
+                { "width": "20%" },
+                { "width": "20%", "orderable": false } // Disable sorting for action column
+            ]
+        });
+    });
+</script>
 <?php
 include '../templates/footer.php';
 ?>

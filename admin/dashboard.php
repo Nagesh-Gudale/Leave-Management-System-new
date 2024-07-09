@@ -3,11 +3,12 @@
 include '../include/session.php'; 
 include '../templates/admin-header.php';
 ?>
-
-<div class="container mt-5 p-4 text-center" style="margin-left:320px; border-bottom:1px solid gray;">
+<main class="main" id="main">
+	<section class="section">
+<div class="container mt-5 p-4 text-center" style=" border-bottom:1px solid gray;">
 	<h1 class="text-dark">Welcome to Leave Management System</h1>
 </div>
-<div class="container" style="margin-left:320px; margin-top:20px">
+<div class="container" style=" margin-top:20px">
 	<div class="row">
 		<div class="col-3">
 			<div class="card rounded shadow-lg " style="background-color:#38384f;">
@@ -47,4 +48,6 @@ include '../templates/admin-header.php';
 		</div>
 	</div>
 </div>
+</section>
+</main>
 <?php include '../templates/footer.php';

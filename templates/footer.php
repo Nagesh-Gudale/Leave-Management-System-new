@@ -9,7 +9,7 @@
   <script src="<?php echo $base; ?>assets/vendor/quill/quill.js"></script>
   <script src="<?php echo $base; ?>assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="<?php echo $base; ?>assets/vendor/php-email-form/validate.js"></script>
-
+ 
   <!-- Template Main JS File -->
   <script src="<?php echo $base; ?>assets/js/main.js"></script>
 

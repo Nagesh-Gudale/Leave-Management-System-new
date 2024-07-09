@@ -39,7 +39,7 @@
   <link href="<?php echo $base; ?>assets/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo $base; ?>assets/css/style.css">
 
-  <!-- <link href="<?php echo $base;?> https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css" rel= "stylesheet"> -->
+  <!-- <link href="<?php //echo $base;?> https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css" rel= "stylesheet"> -->
   
  
 

@@ -1,13 +1,13 @@
 <!-- ======= Header ======= -->
 <?php include 'header.php'; ?>
- <header id="header" class="header fixed-top d-flex align-items-center" style="background-color:#266fbf;">
+ <header id="header" class="header fixed-top d-flex align-items-center"">
 
 <div class="d-flex align-items-center justify-content-between">
   <a href="#" class="logo d-flex align-items-center">
     <img src="#" alt="">
     <span class="d-none d-lg-block"><img src="../assets/images/logo.png" class="bg-light rounded p-1" alt="" height="150px" style></span>
   </a>
-  <i class="bi bi-list toggle-sidebar-btn"></i>
+  <i class="bi bi-list toggle-sidebar-btn text-light"></i>
 </div><!-- End Logo -->
 
 <div class="search-bar">
@@ -36,14 +36,6 @@
           </a>
         </li>
         <li>
-          <hr class="dropdown-divider">
-        </li>
-
-        <li>
-          <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-            <i class="bi bi-gear"></i>
-            <span>Account Settings</span>
-          </a>
         </li>
         <li>
           <hr class="dropdown-divider">

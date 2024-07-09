@@ -1,14 +1,14 @@
 <?php 
 session_start();
 include '../include/session.php';
-
 include '../include/db-connection.php';
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['add_role']) && !empty($_POST['role_name'])) {
       // Insert new Role
       $role_name = $conn->real_escape_string($_POST['role_name']);
-      $sql = "INSERT INTO `role` (name) VALUES ('$role_name', '$role_status')";
+      $role_status = $conn->real_escape_string($_POST['role_status']);
+      $sql = "INSERT INTO role (role_name, status) VALUES ('$role_name', '$role_status')";
       if ($conn->query($sql) === TRUE) {
           $_SESSION['message'] = 'New role created successfully';
       } else {
@@ -17,11 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Redirect to avoid form resubmission
       header("Location: ".$_SERVER['PHP_SELF']);
       exit();
-  } elseif (isset($_POST['update_role']) && !empty($_POST['role_name']) && !empty($_POST['role_id'])) {
+  } elseif (isset($_POST['update_role']) && !empty($_POST['role_name']) && !empty($_POST['role_id']) && !empty($_POST['role_status'])) {
       // Update existing role
       $role_id = intval($_POST['role_id']);
       $role_name = $conn->real_escape_string($_POST['role_name']);
-      $sql = "UPDATE `role` SET name='$role_name' WHERE id=$role_id";
+      $role_status = $conn->real_escape_string($_POST['role_status']);
+      $sql = "UPDATE role SET role_name='$role_name', status='$role_status' WHERE id=$role_id";
       if ($conn->query($sql) === TRUE) {
           $_SESSION['message'] = 'Role updated successfully';
       } else {
@@ -33,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   } elseif (isset($_POST['delete_role']) && !empty($_POST['role_id'])) {
       // Delete role
       $role_id = intval($_POST['role_id']);
-      $sql = "DELETE FROM `role` WHERE id=$role_id";
+      $sql = "DELETE FROM role WHERE id=$role_id";
       if ($conn->query($sql) === TRUE) {
           $_SESSION['message'] = 'Role deleted successfully';
       } else {
@@ -46,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Fetch Roles 
-$sql = "SELECT * FROM `role`";
+$sql = "SELECT * FROM role";
 $result = $conn->query($sql);
 $roleArray = [];
 if ($result->num_rows > 0) {
@@ -112,6 +113,7 @@ include '../templates/admin-header.php';
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -120,8 +122,9 @@ include '../templates/admin-header.php';
                                 <tr>
                                     <td><?php echo $role["id"]; ?></td>
                                     <td><?php echo $role["role_name"]; ?></td>
+                                    <td><?php echo $role["status"]; ?></td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="setUpdateData(<?php echo $role['id']; ?>), '<?php echo $role['role_name']; ?>')">Update</button>
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="setUpdateData(<?php echo $role['id']; ?>, '<?php echo $role['role_name']; ?>')">Update</button>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteData(<?php echo $role['id']; ?>)">Delete</button>
                                     </td>
                                 </tr>
@@ -184,7 +187,7 @@ include '../templates/admin-header.php';
                     </div>
                     <div class="mb-3">
                         <label for="updateRoleStatus" class="form-label">Status</label>
-                        <select class="form-select" id="updateRoleStatus" name="role_status">
+                        <select class="form-select" id="updateRoleStatus" name="role_status" required>
                             <option value="Active">Active</option>
                             <option value="Inactive">Inactive</option>
                         </select>
@@ -226,9 +229,10 @@ include '../templates/admin-header.php';
         $('#roleTable').DataTable({
             "scrollX": false, // Enable horizontal scrolling
             "columns": [
-                { "width": "30%" },
-                { "width": "40%" },
-                { "width": "30%", "orderable": false } // Disable sorting for action column
+                { "width": "25%" }, // Adjust width as needed for each column
+                { "width": "25%" },
+                { "width": "25%" },
+                { "width": "25%", "orderable": false } // Disable sorting for action column
             ]
         });
     });

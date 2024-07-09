@@ -461,15 +461,17 @@ include '../templates/admin-header.php';
                   <div class="form-group col">
                     <label for="role" class="form-label">Role</label>
                     <select class="form-select" id="updaterole_id" name="updaterole_id">
-                        <option value="1">Admin</option>
-                        <option value="2">Staff</option>
+                    <?php foreach($roleArray as $val): ?>
+                        <option value="<?php echo $val['id']; ?>"><?php echo $val['role_name']; ?></option>
+                        <?php endforeach; ?>
                     </select>
                   </div>
                   <div class="form-group col">
                     <label for="department" class="form-label">Department</label>
                     <select class="form-select" id="updatedepartment_id" name="updatedepartment_id">
-                        <option value="1">Hod</option>
-                        <option value="2">cleanner</option>
+                    <?php foreach($departmentArray as $val): ?>
+                        <option value="<?php echo $val['id']; ?>"><?php echo $val['name']; ?></option>
+                        <?php endforeach; ?>
                     </select>
                   </div>
                 </div>
