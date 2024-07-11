@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
        
     }
 
-      $sql = "INSERT INTO users (full_name, username , email , password ,phone , address ,dob ,gender ,profile_image ,role_id ,department_id , status) VALUES ('$full_name', '$username' ,'$email' ,'$password ','$phone' ,'$address', '$dob' , '$gender', '$image_url' , 2 ,2 , '$status')";
+      $sql = "INSERT INTO users (full_name, username , email , password ,phone , address ,dob ,gender ,profile_image ,role_id ,department_id , status) VALUES ('$full_name', '$username' ,'$email' ,'$password ','$phone' ,'$address', '$dob' , '$gender', '$image_url' , $role_id ,$department_id , '$status')";
 
       if ($conn->query($sql) === TRUE) {
           $_SESSION['message'] = 'New staff created successfully';
@@ -370,7 +370,7 @@ include '../templates/admin-header.php';
                   </div>
                   <div class="form-group col">
                     <label for="department" class="form-label">Department</label>
-                    <select class="form-select" id="role" name="role">
+                    <select class="form-select" id="role" name="department">
                       <?php foreach($departmentArray as $val): ?>
                         <option value="<?php echo $val['id']; ?>"><?php echo $val['name']; ?></option>
                         <?php endforeach; ?>
