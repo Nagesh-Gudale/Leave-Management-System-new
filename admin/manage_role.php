@@ -104,11 +104,11 @@ include '../templates/admin-header.php';
                             </script>
                         <?php endif; ?>
 
-                        <button type="button" class="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#addModal">
+                        <button type="button" class="btn btn-primary mt-3 mb-3 gradient" data-bs-toggle="modal" data-bs-target="#addModal">
                             Add Role
                         </button>
                         <!-- Table with stripped rows -->
-                        <table id="roleTable" class="table datatable">
+                        <table id="roleTable" class="table datatable table-striped">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -124,7 +124,7 @@ include '../templates/admin-header.php';
                                     <td><?php echo $role["role_name"]; ?></td>
                                     <td><?php echo $role["status"]; ?></td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="setUpdateData(<?php echo $role['id']; ?>, '<?php echo $role['role_name']; ?>')">Update</button>
+                                        <button type="button" class="btn btn-warning orange" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="setUpdateData(<?php echo $role['id']; ?>, '<?php echo $role['role_name']; ?>')">Update</button>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteData(<?php echo $role['id']; ?>)">Delete</button>
                                     </td>
                                 </tr>

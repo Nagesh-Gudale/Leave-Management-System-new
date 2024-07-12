@@ -57,7 +57,7 @@ include '../templates/admin-header.php';
     <div class="pagetitle">
       <h1>Leave List</h1>
     </div><!-- End Page Title -->
-    <button type="button" class="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#add">
+    <button type="button" class="btn btn-primary mt-3 mb-3 gradient" data-bs-toggle="modal" data-bs-target="#add">
                                 Apply for Leave
                             </button>
     <section class="section">
@@ -67,7 +67,7 @@ include '../templates/admin-header.php';
           <div class="card">
             <div class="card-body">
               <!-- Table with stripped rows -->
-              <table class="table datatable" id="leave">
+              <table class="table datatable table-striped" id="leave">
                 <thead>
                   <tr>
                     <th>ID</th>

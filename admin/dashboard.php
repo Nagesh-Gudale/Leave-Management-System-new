@@ -1,7 +1,37 @@
-
 <?php 
 include '../include/session.php'; 
+include '../include/db-connection.php';
 include '../templates/admin-header.php';
+
+$sql = "SELECT * from leaves where status='pending';";
+$result = $conn->query($sql);
+$leaves = [];
+while($row = $result->fetch_assoc())
+{
+    $leaves[] = $row;
+}
+$sql2 = "SELECT * from leave_types ";
+$result2 = $conn->query($sql2);
+$leavetype = [];
+while($row = $result2->fetch_assoc())
+{
+    $leavetype[] = $row;
+}
+$sql3 = "SELECT * from departments ";
+$result3 = $conn->query($sql3);
+$totaldept = [];
+while($row = $result3->fetch_assoc())
+{
+    $totaldept[] = $row;
+}
+print_r(json_encode($totaldept));
+$sql4 = "SELECT * from users ";
+$result4 = $conn->query($sql4);
+$totalemp = [];
+while($row = $result4->fetch_assoc())
+{
+    $totalemp[] = $row;
+}
 ?>
 <main class="main" id="main">
 	<section class="section">
@@ -14,7 +44,8 @@ include '../templates/admin-header.php';
 			<div class="card rounded shadow-lg " style="background-color:#38384f;">
 				<div class="card-body text-light" style="padding:20px;">
 					<span><i class="fa fa-file-alt " style="font-size: 50px; color:#00ffff;"></i>
-						<h4>Pending Applications</h4>
+						<h4 class="d-inline-block">Pending Applications</h4>
+						<h4 class="d-inline-block"> <?php echo count($leaves) ?></h4>
 					</span>
 				</div>
 			</div>
@@ -22,8 +53,9 @@ include '../templates/admin-header.php';
 		<div class="col-3">
 			<div class="card rounded shadow-lg" style="background-color:#4B49AC">
 				<div class="card-body text-light" style="padding:20px;">
-					<span><i class="fa fa-list" style="font-size: 50px;"></i>
-						<h4>Total Type of Leave</h4>
+					<span><i class="fa fa-list d-block" style="font-size: 50px;"></i>
+						<h4 class="d-inline-block">Total Type of Leave</h4>
+						<h4 class="d-inline-block"><?php echo count($leavetype) ?></h4>
 					</span>
 				</div>
 			</div>
@@ -31,8 +63,9 @@ include '../templates/admin-header.php';
 		<div class="col-3">
 			<div class="card rounded shadow-lg" style="background-color:#29313d;">
 				<div class="card-body text-light" style="padding:20px;">
-					<span><i class="fas fa-building" style="font-size: 50px; color:#0e9cb3;"></i>
-						<h4>Total Departments</h4>
+					<span><i class="fas fa-building d-block" style="font-size: 50px; color:#0e9cb3;"></i>
+						<h4 class="d-inline-block">Total Departments</h4>
+						<h4 class="d-inline-block"><?php echo count($totaldept) ?></h4>
 					</span>
 				</div>
 			</div>
@@ -40,8 +73,9 @@ include '../templates/admin-header.php';
 		<div class="col-3">
 			<div class="card rounded shadow-lg" style="background-color:#020109;">
 				<div class="card-body text-light" style="padding:20px;">
-					<span><i class="fa fa-users text-primary" style="font-size: 50px;"></i>
-						<h4>Total Employees</h4>
+					<span><i class="fa fa-users text-primary d-block" style="font-size: 50px;"></i>
+						<h4 class="d-inline-block">Total Employees</h4>
+						<h4 class="d-inline-block "><?php echo count($totalemp) ?></h4>
 					</span>
 				</div>
 			</div>

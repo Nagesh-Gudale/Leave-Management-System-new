@@ -421,7 +421,7 @@ h6 {
 }
 
 .logo img {
-  max-height: 26px;
+  max-height: 40px;
   margin-right: 6px;
 }
 
@@ -1287,4 +1287,9 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
-
+button.gradient{
+  background: linear-gradient(to right, rgba(1, 90, 135, 1) 0%, rgba(0, 133, 200, 1) 100%);
+}
+button.orange{
+  background: linear-gradient(to right, #FFB75E, #ED8F03);
+}

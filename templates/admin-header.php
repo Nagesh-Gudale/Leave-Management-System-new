@@ -1,11 +1,12 @@
 <!-- ======= Header ======= -->
+ <?php $userId = $_SESSION['user_id']; ?>
 <?php include 'header.php'; ?>
  <header id="header" class="header fixed-top d-flex align-items-center">
 
 <div class="d-flex align-items-center justify-content-between">
   <a href="#" class="logo d-flex align-items-center">
     <img src="#" alt="">
-    <span class="d-none d-lg-block"><img src="../assets/images/logo.png" class="bg-light rounded p-1" alt="" height="150px" style></span>
+    <span class="d-none d-lg-block text-light"><img src="../assets/images/logo.png" class="bg-light rounded p-1" alt="" height="150px" style>Kolhapur</span>
   </a>
   <i class="bi bi-list toggle-sidebar-btn text-light"></i>
 </div><!-- End Logo -->
@@ -25,7 +26,7 @@
 
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
         <img src="../assets/images/profile.png" alt="Profile" class="rounded-circle">
-        <span class="d-none d-md-block dropdown-toggle ps-2 bg-light rounded-4 p-1">Administrator</span>
+        <span class="d-none d-md-block dropdown-toggle ps-2 bg-light rounded-4 p-1"><?php echo $_SESSION['role']?></span>
       </a><!-- End Profile Iamge Icon -->
 
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

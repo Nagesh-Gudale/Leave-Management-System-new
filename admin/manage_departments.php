@@ -103,11 +103,11 @@ include '../templates/admin-header.php';
                             </script>
                         <?php endif; ?>
 
-                        <button type="button" class="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#addModal">
+                        <button type="button" class="btn btn-primary mt-3 mb-3 gradient" data-bs-toggle="modal" data-bs-target="#addModal">
                             Add Department
                         </button>
                         <!-- Table with stripped rows -->
-                        <table id="departmentsTable" class="table datatable">
+                        <table id="departmentsTable" class="table datatable table-striped">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -121,7 +121,7 @@ include '../templates/admin-header.php';
                                     <td><?php echo $department["id"]; ?></td>
                                     <td><?php echo $department["name"]; ?></td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="setUpdateData(<?php echo $department['id']; ?>, '<?php echo $department['name']; ?>')">Update</button>
+                                        <button type="button" class="btn btn-warning orange" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="setUpdateData(<?php echo $department['id']; ?>, '<?php echo $department['name']; ?>')">Update</button>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteData(<?php echo $department['id']; ?>)">Delete</button>
                                     </td>
                                 </tr>

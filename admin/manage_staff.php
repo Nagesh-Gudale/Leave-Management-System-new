@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $full_name = $conn->real_escape_string($_POST['firstname'].' '.$_POST['lastname']);
       $username = $conn->real_escape_string($_POST['username']);
       $email = $conn->real_escape_string($_POST['email']); 
-      $password = $conn->real_escape_string($_POST['password']);
+      $password = password_hash($conn->real_escape_string($_POST['password']),PASSWORD_DEFAULT);
       $phone =  $conn->real_escape_string($_POST['phone']);
       $address =   $conn->real_escape_string($_POST['address']);
       $dob =  $conn->real_escape_string($_POST['dob']);
@@ -251,11 +251,11 @@ include '../templates/admin-header.php';
                             </script>
                         <?php endif; ?>
 
-                        <button type="button" class="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#addModal">
+                        <button type="button" class="btn btn-primary mt-3 mb-3 gradient" data-bs-toggle="modal" data-bs-target="#addModal">
                             Add Staff
                         </button>
                         <!-- Table with stripped rows -->
-                        <table id="staffsTable" class="table datatable">
+                        <table id="staffsTable" class="table datatable table-striped">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -278,7 +278,7 @@ include '../templates/admin-header.php';
                                    
                                     <td class="badge badge-primary"> <?php echo $staff["status"]; ?> </td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal" onclick='setUpdateData(<?php echo json_encode($staff); ?>)'>Update</button>
+                                        <button type="button" class="btn btn-warning orange" data-bs-toggle="modal" data-bs-target="#updateModal" onclick='setUpdateData(<?php echo json_encode($staff); ?>)'>Update</button>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteData(<?php echo $staff['id']; ?>)">Delete</button>
                                     </td>
                                 </tr>
@@ -344,7 +344,7 @@ include '../templates/admin-header.php';
                 </div>
                 <div class="form-row d-flex add-staf-field">
                   <div class="form-group col">
-                    <label for="inputEmail4">Gneder</label>
+                    <label for="inputEmail4">Gender</label>
                     <div>
                       <input class="form-check-input" type="radio" name="gender" id="male" value="male">
                       <label class="form-check-label" for="inlineRadio1">Male</label>
@@ -364,7 +364,7 @@ include '../templates/admin-header.php';
                     <label for="role" class="form-label">Role</label>
                     <select class="form-select" id="role" name="role">
                       <?php foreach($roleArray as $val): ?>
-                        <option value="<?php echo $val['id']; ?>"><?php echo $val['role_name']; ?></option>
+                        <option value="<?php echo $val['id']; ?>"><?php echo $val['role_name']; echo $val['id']; ?></option>
                         <?php endforeach; ?>
                     </select>
                   </div>

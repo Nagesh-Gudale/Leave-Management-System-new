@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  $sql = "SELECT u.id, u.full_name, u.username,u.password, u.role_id, r.id , r.role_name as `role_name`
+  $sql = "SELECT u.id, u.full_name, u.username,u.password, u.role_id , r.role_name as `role_name`
   FROM users as u
   INNER JOIN role as r
   ON u.role_id=r.id Where u.username = '$username'";
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
 ?>
 
 
-<main>
+<main style="background: linear-gradient(to bottom, #f0f0f0 0%, #008080 100%);">
     <div class="container">
 
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
