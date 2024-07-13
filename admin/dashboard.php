@@ -32,7 +32,6 @@ while($row = $result3->fetch_assoc())
 {
     $totaldept[] = $row;
 }
-print_r(json_encode($totaldept));
 $sql4 = "SELECT * from users ";
 $result4 = $conn->query($sql4);
 $totalemp = [];
