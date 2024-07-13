@@ -1,8 +1,17 @@
 <?php 
 session_start();
-include '../include/session.php';
 
 include '../include/db-connection.php';
+include '../include/session.php';
+
+
+checkLogin();
+
+// Check if user is admin
+if (!isAdmin()) {
+    header('Location: ../login.php');
+    exit();
+}
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['add_staff']) && !empty($_POST['email'])) {
@@ -278,6 +287,7 @@ include '../templates/admin-header.php';
                                    
                                     <td class="badge badge-primary"> <?php echo $staff["status"]; ?> </td>
                                     <td>
+                                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewModal" onclick='setViewData(<?php echo json_encode($staff); ?>)'>View</button>
                                         <button type="button" class="btn btn-warning orange" data-bs-toggle="modal" data-bs-target="#updateModal" onclick='setUpdateData(<?php echo json_encode($staff); ?>)'>Update</button>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteData(<?php echo $staff['id']; ?>)">Delete</button>
                                     </td>
@@ -370,7 +380,7 @@ include '../templates/admin-header.php';
                   </div>
                   <div class="form-group col">
                     <label for="department" class="form-label">Department</label>
-                    <select class="form-select" id="role" name="department">
+                    <select class="form-select" id="department" name="department">
                       <?php foreach($departmentArray as $val): ?>
                         <option value="<?php echo $val['id']; ?>"><?php echo $val['name']; ?></option>
                         <?php endforeach; ?>
@@ -526,6 +536,74 @@ include '../templates/admin-header.php';
     </div>
 </div>
 
+<!-- View modal -->
+ <div class="modal fade" id="viewModal" tabindex="-1">
+ <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">View Staff Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div class="form-row d-flex add-staf-field">
+                <div class="form-group col">
+                    <label for="viewfirstname">First Name</label>
+                    <input type="text" class="form-control" id="viewfirstname" disabled>
+                </div>
+                <div class="form-group col">
+                    <label for="viewlastname">Last Name</label>
+                    <input type="text" class="form-control" id="viewlastname" disabled>
+                </div>
+            </div>
+            <div class="form-row d-flex add-staf-field">
+                <div class="form-group col">
+                    <label for="viewusername">Username</label>
+                    <input type="text" class="form-control" id="viewusername" disabled>
+                </div>
+                <div class="form-group col">
+                    <label for="viewemail">Email</label>
+                    <input type="email" class="form-control" id="viewemail" disabled>
+                </div>
+            </div>
+            <div class="form-row d-flex add-staf-field">
+                <div class="form-group col">
+                    <label for="viewphone">Phone</label>
+                    <input type="text" class="form-control" id="viewphone" disabled>
+                </div>
+                <div class="form-group col">
+                    <label for="viewdob">DOB</label>
+                    <input type="date" class="form-control" id="viewdob" disabled>
+                </div>
+            </div>
+            <div class="form-row d-flex add-staf-field">
+                <div class="form-group col">
+                    <label for="viewgender">Gender</label>
+                    <input type="text" class="form-control" id="viewgender" disabled>
+                </div>
+                <div class="form-group col">
+                    <label for="viewaddress">Address</label>
+                    <input type="text" class="form-control" id="viewaddress" disabled>
+                </div>
+            </div>
+            <div class="form-row d-flex add-staf-field">
+                <div class="form-group col">
+                    <label for="viewrole">Role</label>
+                    <input type="text" class="form-control" id="viewrole" disabled>
+                </div>
+                <div class="form-group col">
+                    <label for="viewdepartment">Department</label>
+                    <input type="text" class="form-control" id="viewdepartment" disabled>
+                </div>
+                <div class="form-group col">
+                    <label for="viewstatus">Status</label>
+                    <input type="text" class="form-control" id="viewstatus" disabled>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
 <script>
     $(document).ready(function() {
         $('#staffsTable').DataTable({
@@ -541,6 +619,19 @@ include '../templates/admin-header.php';
             ]
         });
     });
+      function setViewData(staff) {
+          document.getElementById('viewfirstname').value = staff.full_name.split(' ')[0];
+          document.getElementById('viewlastname').value = staff.full_name.split(' ')[1];
+          document.getElementById('viewusername').value = staff.username;
+          document.getElementById('viewemail').value = staff.email;
+          document.getElementById('viewphone').value = staff.phone;
+          document.getElementById('viewdob').value = staff.dob;
+          document.getElementById('viewgender').value = staff.gender;
+          document.getElementById('viewaddress').value = staff.address;
+          document.getElementById('viewrole').value = staff.role_id; // Adjust if you have a role name instead of ID
+          document.getElementById('viewdepartment').value = staff.department_id; // Adjust if you have a department name instead of ID
+          document.getElementById('viewstatus').value = staff.status;
+      }
 
     function setUpdateData(staff) {
         // var staff = JSON.stringify(staffData);

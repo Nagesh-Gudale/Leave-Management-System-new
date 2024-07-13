@@ -1,8 +1,14 @@
 <?php
-include '../include/session.php';
 include '../include/db-connection.php';
+include '../include/session.php';
 
+checkLogin();
 
+// Check if user is admin
+if (!isAdmin()) {
+    header('Location: ../login.php');
+    exit();
+}
 $sql = "SELECT l.* , lt.type,u.full_name FROM leaves as l INNER JOIN leave_types as lt ON l.leave_type_id=lt.id INNER JOIN users as u ON l.user_id=u.id WHERE l.status='pending'";
 $result = $conn->query($sql);
 $leaves = [];

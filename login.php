@@ -1,4 +1,5 @@
 <?php include 'templates/header.php';
+include 'include/session.php';
 include 'include/db-connection.php'; 
 // Start session if not already started
 if (session_status() == PHP_SESSION_NONE) {
@@ -10,11 +11,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  $sql = "SELECT u.id, u.full_name, u.username,u.password, u.role_id , r.role_name as `role_name`
+  // $sql = "SELECT u.id, u.full_name, u.username,u.password, u.role_id , r.role_name as `role_name`
+  // FROM users as u
+  // INNER JOIN role as r
+  // ON u.role_id=r.id Where u.username = '$username'";
+  // $result = $conn->query($sql);
+
+  $stmt = $conn->prepare("SELECT u.id, u.full_name, u.username, u.password, u.role_id as role_id, r.role_name as role_name
   FROM users as u
-  INNER JOIN role as r
-  ON u.role_id=r.id Where u.username = '$username'";
-  $result = $conn->query($sql);
+  INNER JOIN role as r ON u.role_id = r.id
+  WHERE u.username = ?");
+if (!$stmt) {
+die('Prepare failed: ' . $conn->error);
+}
+
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Check for SQL errors
+if ($conn->error) {
+die('Execute failed: ' . $conn->error);
+}
 
   if ($result->num_rows > 0) {
       $user = $result->fetch_assoc();
@@ -25,6 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
           if( $_SESSION['role'] == 'admin')
           {
             header('Location: admin/dashboard.php');
+          }elseif( $_SESSION['role'] == 'HOD')
+          {
+            header('Location: HOD/dashboard.php');
           }
           else
           {
@@ -33,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
          
       } else {
           echo "Invalid password";
+          header('Location: Login.php');
           die;
       }
   } else {
