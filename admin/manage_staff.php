@@ -285,7 +285,7 @@ include '../templates/admin-header.php';
                                     <td><?php echo $staff["email"]; ?></td>
                                     <td><?php echo $staff["phone"]; ?></td>
                                    
-                                    <td class="badge badge-primary"> <?php echo $staff["status"]; ?> </td>
+                                    <td class="badge badge-primary" style="padding:21px 51px;"> <?php print $staff["status"]; ?> </td>
                                     <td>
                                         <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#viewModal" onclick='setViewData(<?php echo json_encode($staff); ?>)'>View</button>
                                         <button type="button" class="btn btn-warning orange" data-bs-toggle="modal" data-bs-target="#updateModal" onclick='setUpdateData(<?php echo json_encode($staff); ?>)'>Update</button>

@@ -79,7 +79,7 @@ include '../templates/admin-header.php';
                 <div class="card">
                     <div class="card-body">
                         <!-- Table with stripped rows -->
-                        <table class="table datatable" id="leaves_table">
+                        <table class="table datatable table-striped" id="leaves_table">
                             <thead>
                                 <tr>
                                     <th>Leave ID</th>

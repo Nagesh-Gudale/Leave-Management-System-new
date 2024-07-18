@@ -36,7 +36,13 @@
   <li class="nav-item">
     <a class="nav-link " href="../admin/list_leaves.php">
       <i class="fa fa-list"></i>
-      <span>Leave List</span>
+      <span>Leave Application List</span>
+    </a>
+  </li><!-- End Dashboard Nav -->
+  <li class="nav-item">
+    <a class="nav-link " href="../admin/list_leaves.php">
+      <i class="fa fa-list"></i>
+      <span>Leave Reports</span>
     </a>
   </li><!-- End Dashboard Nav -->
   
