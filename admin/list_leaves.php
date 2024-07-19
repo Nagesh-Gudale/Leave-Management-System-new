@@ -108,7 +108,7 @@ include '../templates/admin-header.php';
                                         <td>
                                             <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                                 data-bs-target="#myModal"
-                                                onclick='openUpdateModal(<?php echo $leave["id"]; ?>)'>Accept</button>
+                                                onclick='openUpdateModal(<?php echo $leave["id"]; ?>)'>Approve</button>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#Rejectmodal"
                                                 onclick="openRejectModal(<?php echo $leave['id']; ?>)">Reject</button>

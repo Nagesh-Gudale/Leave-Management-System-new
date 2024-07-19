@@ -40,7 +40,7 @@
     </a>
   </li><!-- End Dashboard Nav -->
   <li class="nav-item">
-    <a class="nav-link " href="../admin/list_leaves.php">
+    <a class="nav-link " href="../admin/leave_report.php">
       <i class="fa fa-list"></i>
       <span>Leave Reports</span>
     </a>
