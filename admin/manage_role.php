@@ -83,7 +83,7 @@ include '../templates/admin-header.php';
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style="overflow-x:scroll;">
                         <!-- Alert Messages -->
                         <?php if (isset($_SESSION['message']) || isset($_SESSION['error'])): ?>
                             <div id="alert-container" style="position: fixed; top: 10px; right: 10px; z-index: 1050;">
@@ -116,7 +116,7 @@ include '../templates/admin-header.php';
                             Add Role
                         </button>
                         <!-- Table with stripped rows -->
-                        <table id="roleTable" class="table datatable table-striped">
+                        <table id="roleTable" class="table datatable table-striped table-responsive">
                             <thead>
                                 <tr>
                                     <th>ID</th>

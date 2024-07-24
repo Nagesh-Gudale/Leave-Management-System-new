@@ -20,8 +20,8 @@
   crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
   <!-- Favicons -->
-  <link href="<?php echo $base; ?>assets/img/favicon.png" rel="icon">
-  <link href="<?php echo $base; ?>assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- <link href="<?php// echo $base; ?>assets/img/favicon.png" rel="icon">
+  <link href="<?php //echo $base; ?>assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
 
   <!-- Google Fonts -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -30,7 +30,7 @@
 
   <!-- Vendor CSS Files -->
   <link href="<?php echo $base; ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="<?php echo $base; ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <!-- <link href="<?php //echo $base; ?>assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"> -->
   <link href="<?php echo $base; ?>assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="<?php echo $base; ?>assets/vendor/quill/quill.snow.css" rel="stylesheet">
   <link href="<?php echo $base; ?>assets/vendor/quill/quill.bubble.css" rel="stylesheet">

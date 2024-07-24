@@ -49,13 +49,13 @@
   <?php elseif (isStaff()) : ?>
     <li class="nav-item">
       <a class="nav-link " href="../staff/dashboard.php">
-        <i class="bi bi-grid"></i>
+        <i class="fa fa-dashboard"></i>
         <span>Dashboard</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link " href="../staff/leaves.php">
-        <i class="bi bi-grid"></i>
+        <i class="fa fa-list"></i>
         <span>Leaves</span>
       </a>
     </li> 

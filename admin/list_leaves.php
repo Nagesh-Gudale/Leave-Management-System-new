@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../include/db-connection.php';
 include '../include/session.php';
 
@@ -41,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['recordId'])) {
     $sql3 = "UPDATE leaves SET `status` = '$new_value' WHERE id = '$id';";
   
     if ($conn->query($sql3) === TRUE) {
-        $_SESSION['message'] = 'accepted successfully';
+        $_SESSION['message'] = 'approved successfully';
     } else {
         $_SESSION['error'] = 'Error: ' . $conn->error;
     }
@@ -77,9 +78,35 @@ include '../templates/admin-header.php';
             <div class="col-lg-12">
 
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style="overflow-x:scroll;">
+                    <?php if (isset($_SESSION['message']) || isset($_SESSION['error'])): ?>
+                            <div id="alert-container" style="position: fixed; top: 10px; right: 10px; z-index: 1050;">
+                                <?php if (isset($_SESSION['message'])): ?>
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <?php echo $_SESSION['message']; ?>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    <?php unset($_SESSION['message']); ?>
+                                <?php endif; ?>
+                                <?php if (isset($_SESSION['error'])): ?>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <?php echo $_SESSION['error']; ?>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    <?php unset($_SESSION['error']); ?>
+                                <?php endif; ?>
+                            </div>
+                            <script>
+                                setTimeout(function() {
+                                    let alertContainer = document.getElementById('alert-container');
+                                    if (alertContainer) {
+                                        alertContainer.style.display = 'none';
+                                    }
+                                }, 5000);
+                            </script>
+                        <?php endif; ?>
                         <!-- Table with stripped rows -->
-                        <table class="table datatable table-striped" id="leaves_table">
+                        <table class="table datatable table-striped table-responsive" id="leaves_table">
                             <thead>
                                 <tr>
                                     <th>Leave ID</th>
@@ -162,11 +189,11 @@ include '../templates/admin-header.php';
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="recordId" name="recordId">
-                    <p>Are you sure you want to Accept the Application?</p>
+                    <p>Are you sure you want to Approve the Application?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="" class="btn btn-success">Accept</button>
+                    <button type="submit" name="" class="btn btn-success">Approve</button>
                 </div>
             </form>
         </div>

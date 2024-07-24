@@ -4,7 +4,7 @@ include '../include/db-connection.php';
 
 
 
-
+echo date("Y/m/d");
 $userId = $_SESSION['user_id'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['add_leave'])) {
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $reason = $conn->real_escape_string($_POST['reason']);
       $startDate = $conn->real_escape_string($_POST['fromDate']);
       $endDate = $conn->real_escape_string($_POST['toDate']); 
-
+      if($startDate<date("Y/m/d")){
       $sql = "INSERT INTO leaves (user_id, leave_type_id ,start_date ,end_date ,reason) VALUES ('$userId', '$leave_type_id' ,'$startDate' ,'$endDate','$reason')";
       if ($conn->query($sql) === TRUE) {
           $_SESSION['message'] = 'New leave created successfully';
@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       header("Location: ".$_SERVER['PHP_SELF']);
       exit();
   } 
+}
 }
 
 
@@ -51,7 +52,7 @@ function dateDiffInDays($date1, $date2) {
   // 24 * 60 * 60 = 86400 seconds 
   return abs(round($diff / 86400)); 
 } 
-include '../templates/admin-header.php';
+// include '../templates/admin-header.php';
 ?>
 <main id="main" class="main"> 
     <div class="pagetitle">

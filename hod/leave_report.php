@@ -5,7 +5,7 @@ include '../include/session.php';
 checkLogin();
 
 // Check if user is admin
-if (!isAdmin()) {
+if (!isHOD()) {
     header('Location: ../login.php');
     exit();
 }
@@ -58,9 +58,9 @@ include '../templates/admin-header.php';
                 ?>">
 
                 <div class="card container">
-                    <div class="card-body" style="overflow-x:auto;">
+                    <div class="card-body">
                         <!-- Table with stripped rows -->
-                        <table class="table datatable table-striped table-responsive table-bordered" id="myTable" style="border:2px solid black; margin:10px;">
+                        <table class="table datatable table-striped" id="myTable">
                             <thead>
                                 <tr>
                                     <th>Leave ID</th>
@@ -82,8 +82,8 @@ include '../templates/admin-header.php';
                                         <td><?php echo $leave["type"]; ?></td>
                                         <td><?php echo $leave["start_date"]; ?></td>
                                         <td><?php echo $leave["end_date"]; ?></td>
-                                        <td><?php echo ucfirst($leave['reason']); ?></td>
-                                        <td><?php echo ucfirst($leave['status']); ?></td>
+                                        <td><?php echo $leave['reason']; ?></td>
+                                        <td><?php echo $leave["status"]; ?></td>
                                     </tr>
                                 <?php endforeach; ?>
 

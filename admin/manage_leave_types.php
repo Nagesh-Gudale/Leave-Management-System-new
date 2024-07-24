@@ -83,7 +83,7 @@ include '../templates/admin-header.php';
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style="overflow-x:scroll;">
                         <!-- Alert Messages -->
                         <?php if (isset($_SESSION['message']) || isset($_SESSION['error'])): ?>
                             <div id="alert-container" style="position: fixed; top: 10px; right: 10px; z-index: 1050;">
@@ -116,11 +116,12 @@ include '../templates/admin-header.php';
                             Add Leave Type
                         </button>
                         <!-- Table with stripped rows -->
-                        <table id="leave_typesTable" class="table datatable table-striped">
+                        <table id="leave_typesTable" class="table datatable table-striped table-responsive">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th class="text-end">Name</th>
+                                    <th>Eligibility in a Calendar Year</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -128,7 +129,8 @@ include '../templates/admin-header.php';
                                 <?php foreach ($leave_type_Array as $leave_type): ?>
                                 <tr>
                                     <td><?php echo $leave_type["id"]; ?></td>
-                                    <td><?php echo $leave_type["type"]; ?></td>
+                                    <td class="text-end"><?php echo $leave_type["type"]; ?></td>
+                                    <td><?php echo $leave_type["Eligibility in a calendar year"]; ?></td>
                                     <td>
                                         <button type="button" class="btn btn-warning orange" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="setUpdateData(<?php echo htmlspecialchars(json_encode($leave_type)); ?>)">Update</button>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="setDeleteData(<?php echo $leave_type['id']; ?>)">Delete</button>
@@ -239,6 +241,7 @@ include '../templates/admin-header.php';
             "columns": [
                 null, // Name column
                 null, // Status column
+                { "width": "25%" },
                 { "orderable": false } // Action column
             ]
         });

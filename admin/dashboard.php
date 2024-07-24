@@ -47,7 +47,7 @@ while($row = $result4->fetch_assoc())
 </div>
 <div class="container" style=" margin-top:20px">
 	<div class="row">
-		<div class="col-3">
+		<div class="col-lg-3 col-sm-12 col-md-6">
 			<div class="card rounded shadow-lg " style="background-color:#38384f;">
 				<div class="card-body text-light" style="padding:20px;">
 					<span><i class="fa fa-file-alt " style="font-size: 50px; color:#00ffff;"></i>
@@ -57,7 +57,7 @@ while($row = $result4->fetch_assoc())
 				</div>
 			</div>
 		</div>
-		<div class="col-3">
+		<div class="col-lg-3 col-sm-12 col-md-6">
 			<div class="card rounded shadow-lg" style="background-color:#4B49AC">
 				<div class="card-body text-light" style="padding:20px;">
 					<span><i class="fa fa-list d-block" style="font-size: 50px;"></i>
@@ -67,7 +67,7 @@ while($row = $result4->fetch_assoc())
 				</div>
 			</div>
 		</div>
-		<div class="col-3">
+		<div class="col-lg-3 col-sm-12 col-md-6">
 			<div class="card rounded shadow-lg" style="background-color:#29313d;">
 				<div class="card-body text-light" style="padding:20px;">
 					<span><i class="fas fa-building d-block" style="font-size: 50px; color:#0e9cb3;"></i>
@@ -77,7 +77,7 @@ while($row = $result4->fetch_assoc())
 				</div>
 			</div>
 		</div>
-		<div class="col-3">
+		<div class="col-lg-3 col-sm-12 col-md-6">
 			<div class="card rounded shadow-lg" style="background-color:#020109;">
 				<div class="card-body text-light" style="padding:20px;">
 					<span><i class="fa fa-users text-primary d-block" style="font-size: 50px;"></i>

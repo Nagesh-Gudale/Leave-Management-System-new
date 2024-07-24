@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $full_name = $conn->real_escape_string($_POST['firstname'].' '.$_POST['lastname']);
       $username = $conn->real_escape_string($_POST['username']);
       $email = $conn->real_escape_string($_POST['email']); 
-      $password = password_hash($conn->real_escape_string($_POST['password']),PASSWORD_DEFAULT);
+      $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
       $phone =  $conn->real_escape_string($_POST['phone']);
       $address =   $conn->real_escape_string($_POST['address']);
       $dob =  $conn->real_escape_string($_POST['dob']);
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
        
     }
 
-      $sql = "INSERT INTO users (full_name, username , email , password ,phone , address ,dob ,gender ,profile_image ,role_id ,department_id , status) VALUES ('$full_name', '$username' ,'$email' ,'$password ','$phone' ,'$address', '$dob' , '$gender', '$image_url' , $role_id ,$department_id , '$status')";
+      $sql = "INSERT INTO users (full_name, username , email , password ,phone , address ,dob ,gender ,profile_image ,role_id ,department_id , status) VALUES ('$full_name', '$username' ,'$email' ,'$password','$phone' ,'$address', '$dob' , '$gender', '$image_url' , $role_id ,$department_id , '$status')";
 
       if ($conn->query($sql) === TRUE) {
           $_SESSION['message'] = 'New staff created successfully';
@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $image_url = $_POST['image_url'];
     }
       $staffId= $_POST["updatestaffId"];
-      $sql = "UPDATE  users SET `full_name`='$full_name',`username`='$username',`email`='$email',`password`='$password',`phone`='$phone',`address`='$address',`dob`='$dob',`gender`='$gender',`profile_image`='$image_url',`role_id`='$role_id',`department_id`='$department_id',`status`='$status' WHERE `id` = '$staffId' ";
+      $sql = "UPDATE  users SET `full_name`='$full_name',`username`='$username',`email`='$email',`phone`='$phone',`address`='$address',`dob`='$dob',`gender`='$gender',`profile_image`='$image_url',`role_id`='$role_id',`department_id`='$department_id',`status`='$status' WHERE `id` = '$staffId' ";
       
       if ($conn->query($sql) === TRUE) {
           $_SESSION['message'] = 'staff Updates successfully';
@@ -231,7 +231,7 @@ include '../templates/admin-header.php';
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style="overflow-x:scroll;">
                         <!-- Alert Messages -->
                         <?php if (isset($_SESSION['message']) || isset($_SESSION['error'])): ?>
                             <div id="alert-container" style="position: fixed; top: 10px; right: 10px; z-index: 1050;">
@@ -264,7 +264,7 @@ include '../templates/admin-header.php';
                             Add Staff
                         </button>
                         <!-- Table with stripped rows -->
-                        <table id="staffsTable" class="table datatable table-striped">
+                        <table id="staffsTable" class="table datatable table-striped table-responsive">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -335,7 +335,7 @@ include '../templates/admin-header.php';
                 <div class="form-row d-flex add-staf-field">
                 <div class="form-group col">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
                   </div> 
                   <div class="form-group col">
                     <label for="confirm-password">Confirm Password</label>
@@ -546,55 +546,55 @@ include '../templates/admin-header.php';
             </div>
             <div class="modal-body">
             <div class="form-row d-flex add-staf-field">
-                <div class="form-group col">
+                <div class="form-group col-md-12 col-lg-6">
                     <label for="viewfirstname">First Name</label>
                     <input type="text" class="form-control" id="viewfirstname" disabled>
                 </div>
-                <div class="form-group col">
+                <div class="form-group col-md-12 col-lg-6">
                     <label for="viewlastname">Last Name</label>
                     <input type="text" class="form-control" id="viewlastname" disabled>
                 </div>
             </div>
             <div class="form-row d-flex add-staf-field">
-                <div class="form-group col">
+                <div class="form-group col-md-12 col-lg-6">
                     <label for="viewusername">Username</label>
                     <input type="text" class="form-control" id="viewusername" disabled>
                 </div>
-                <div class="form-group col">
+                <div class="form-group col-md-12 col-lg-6">
                     <label for="viewemail">Email</label>
                     <input type="email" class="form-control" id="viewemail" disabled>
                 </div>
             </div>
             <div class="form-row d-flex add-staf-field">
-                <div class="form-group col">
+                <div class="form-group col-md-12 col-lg-6">
                     <label for="viewphone">Phone</label>
                     <input type="text" class="form-control" id="viewphone" disabled>
                 </div>
-                <div class="form-group col">
+                <div class="form-group col-md-12 col-lg-6">
                     <label for="viewdob">DOB</label>
                     <input type="date" class="form-control" id="viewdob" disabled>
                 </div>
             </div>
             <div class="form-row d-flex add-staf-field">
-                <div class="form-group col">
+                <div class="form-group col-md-12 col-lg-6">
                     <label for="viewgender">Gender</label>
                     <input type="text" class="form-control" id="viewgender" disabled>
                 </div>
-                <div class="form-group col">
+                <div class="form-group col-md-12 col-lg-6">
                     <label for="viewaddress">Address</label>
                     <input type="text" class="form-control" id="viewaddress" disabled>
                 </div>
             </div>
             <div class="form-row d-flex add-staf-field">
-                <div class="form-group col">
+                <div class="form-group col-md-12 col-lg-4">
                     <label for="viewrole">Role</label>
                     <input type="text" class="form-control" id="viewrole" disabled>
                 </div>
-                <div class="form-group col">
+                <div class="form-group col-md-12 col-lg-4">
                     <label for="viewdepartment">Department</label>
                     <input type="text" class="form-control" id="viewdepartment" disabled>
-                </div>
-                <div class="form-group col">
+                </div><br>
+                <div class="form-group col-md-12 col-lg-4">
                     <label for="viewstatus">Status</label>
                     <input type="text" class="form-control" id="viewstatus" disabled>
                 </div>

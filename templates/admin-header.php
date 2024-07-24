@@ -8,13 +8,13 @@
     <img src="#" alt="">
     <span class="d-none d-lg-block text-light"><img src="../assets/images/logo.png" class="bg-light rounded p-1" alt="" height="150px" style>Kolhapur</span>
   </a>
-  <i class="bi bi-list toggle-sidebar-btn text-light"></i>
+  <i class="fa fa-bars toggle-sidebar-btn text-light"></i>
 </div><!-- End Logo -->
 
 <div class="search-bar">
   <form class="search-form d-flex align-items-center" method="POST" action="#">
     <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-    <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+    <button type="submit" title="Search"><i class="fa fa-search"></i></button>
     
   </form>
 </div>
@@ -32,7 +32,7 @@
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
         <li>
           <a class="dropdown-item d-flex align-items-center" href="../templates/profile.php">
-            <i class="bi bi-person"></i>
+            <i class="fa fa-user"></i>
             <span>My Profile</span>
           </a>
         </li>
@@ -43,7 +43,7 @@
         </li>
         <li>
           <a class="dropdown-item d-flex align-items-center" href="../logout.php">
-            <i class="bi bi-box-arrow-right"></i>
+            <i class="fa fa-sign-out"></i>
             <span>Sign Out</span>
           </a>
         </li>
